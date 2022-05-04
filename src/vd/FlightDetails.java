@@ -1,6 +1,6 @@
 package vd;
 
-public class FlightDetails {
+public class FlightDetails implements Comparable<FlightDetails>{
 	private String from;
 	private String to;
 	private String distance;
@@ -65,6 +65,11 @@ public class FlightDetails {
 	public String toString() {
 		return "FlightDetails [from=" + from + ", to=" + to + ", distance=" + distance + ", travelTime=" + travelTime
 				+ ", fare=" + fare + "]";
+	}
+
+	@Override
+	public int compareTo(FlightDetails o) {
+		return this.getTo().compareTo(o.getTo());
 	}
 
 }

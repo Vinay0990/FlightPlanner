@@ -13,8 +13,9 @@ public class MainApp {
 		FlightDetails[] arr = new FlightDetails[10];
 		int count = 0;
 		File file = new File("data.csv");
+		Scanner sc = null;
 		try {
-			Scanner sc = new Scanner(file);
+			sc = new Scanner(file);
 			sc.useDelimiter(",");
 			sc.nextLine();
 			while (sc.hasNext()) {
@@ -23,7 +24,7 @@ public class MainApp {
 			}
 
 //			Task 1
-			displayRoutes(arr);
+//			displayRoutes(arr);
 
 //			Task 2 Get flights using source details
 			getDirectFlights(arr, "Delhi");
@@ -36,15 +37,20 @@ public class MainApp {
 				}
 			});
 
+//			Using Comparable
+			Arrays.sort(arr, 0, count);
+
 //			Task 3 Get flights using source details and sort
 			System.out.println("================================");
 			getDirectFlights(arr, "Delhi");
 
 //			Task 4 Get Flight using source and destination
-			getFlights(arr, "Delhi", "Banglore");
+//			getFlights(arr, "Delhi", "Banglore");
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		} finally {
+			sc.close();
 		}
 
 	}
@@ -83,10 +89,6 @@ public class MainApp {
 
 	}
 
-	public static String clean(String uncleaned) {
-		return uncleaned.trim();
-	}
-
 	public static void displayRoutes(FlightDetails[] arr) {
 		System.out.format("%10s %10s %10s %10s %10s", "From", "To", "Distance", "Travel Time", "Fare");
 		System.out.println();
@@ -103,4 +105,5 @@ public class MainApp {
 				arr[i].getTravelTime(), arr[i].getFare());
 		System.out.println();
 	}
+
 }
